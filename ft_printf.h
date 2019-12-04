@@ -23,6 +23,9 @@ typedef struct	s_print_params
 	int			length;
 	char		type;
 	int			buff_cntr;
+	char		*printf_buf;
+	const char	*str;
+	va_list		args;
 }				t_print_params;
 
 /*
@@ -31,10 +34,14 @@ typedef struct	s_print_params
 
 
 /*
-**
+** option_handlers.c
 */
 
-
+void	flags_handler(t_print_params *pr_par, va_list args);
+void	width_handler(t_print_params *pr_par, va_list args);
+void	precision_handler(t_print_params *pr_par, va_list args);
+void	length_handler(t_print_params *pr_par, va_list args);
+void	type_handler(t_print_params *pr_par, va_list args);
 
 /*
 **

@@ -1,8 +1,8 @@
 NAME = ft_printf
 
-SRC = ft_printf.c
+SRC = ft_printf.c option_handlers.c
 
-OBJ = ft_printf.o
+OBJ = ft_printf.o option_handlers.o
 
 HEADER = ft_printf.h
 
