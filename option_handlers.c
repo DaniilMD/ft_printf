@@ -30,7 +30,7 @@ void	width_handler(t_print_params *pr_par, va_list args)
 		if (pr_par->str[pr_par->curr_i] == '*')
 			pr_par->padding_size = va_arg(args, int);
 		if ((pr_par->str[pr_par->curr_i]  >= '0' && pr_par->str[pr_par->curr_i] <= '9') &&
-		(pr_par->str[pr_par->curr_i - 1] < '1' || pr_par->str[pr_par->curr_i - 1] > '9'))
+		(pr_par->str[pr_par->curr_i - 1] < '0' || pr_par->str[pr_par->curr_i - 1] > '9'))
 			pr_par->padding_size = ft_atoi(&pr_par->str[pr_par->curr_i]);
 		pr_par->curr_i++;
 
@@ -59,19 +59,19 @@ void	length_handler(t_print_params *pr_par, va_list args)
 	while ((pr_par->str[pr_par->curr_i]  == 'h' || pr_par->str[pr_par->curr_i]  == 'l') && pr_par->str[pr_par->curr_i] != '\0')
 	{
 		if (pr_par->str[pr_par->curr_i] == 'l' && pr_par->str[pr_par->curr_i + 1] != 'l' && pr_par->str[pr_par->curr_i - 1] != 'l')
-			pr_par->length = 1;
+			pr_par->length = 'l';
 			//		l
 			//make long
 		if (pr_par->str[pr_par->curr_i] == 'h' && pr_par->str[pr_par->curr_i + 1] != 'h' && pr_par->str[pr_par->curr_i - 1] != 'h')
-			pr_par->length = 2;
+			pr_par->length = 'h';
 			//make short
 			//		h
 		if (pr_par->str[pr_par->curr_i] == 'l' && pr_par->str[pr_par->curr_i + 1] == 'l')
-			pr_par->length = 3;
+			pr_par->length = 'L';
 			//make long long
 			//		ll
 		if (pr_par->str[pr_par->curr_i] == 'h' && pr_par->str[pr_par->curr_i + 1] == 'h')
-			pr_par->length = 4;
+			pr_par->length = 'H';
 			//make char
 			//		hh
 		pr_par->curr_i++;
