@@ -1,19 +1,20 @@
-NAME = ft_printf
 
-SRC = ft_printf.c option_handlers.c csp_handlers.c support_functions.c
+NAME =  libftprintf.a
 
-OBJ = ft_printf.o option_handlers.o csp_handlers.o support_functions.o
+SRC = ft_printf.c option_handlers.c csp_handlers.c support_functions.c diouxX_handlers.c
+
+OBJ = $(SRC:.c=.o)
+##ft_printf.o option_handlers.o csp_handlers.o support_functions.o
 
 HEADER = ft_printf.h
 
 $(NAME): $(OBJ)
 	@make -C libft/
-	##@gcc -Wall -Wextra -Werror $(SRC) -o $(NAME) -L libft -lft
-	@gcc $(SRC) -o $(NAME) -L libft -lft
+	@cp ./libft/libft.a $(NAME)
+	@ar rc $(NAME) $(OBJ)
 
 %.o:%.c $(HEADER)
-	##@gcc -Wall -Wextra -Werror -I . -c $< -o $@
-	@gcc -I . -c $< -o $@
+	@gcc -Wall -Wextra -Werror -I . -c $< -o $@
 
 clean:
 	@/bin/rm -f *~

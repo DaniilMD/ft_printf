@@ -20,13 +20,13 @@ typedef struct	s_print_params
 	int			alt_format;
 	int			padding_size;
 	int			precision;
-	//int			length;
 	char		length;
 	char		type;
 	int			buff_cntr;
 	char		*printf_buf;
 	const char	*str;
-	//va_list		args;
+	char		hex_sym;
+	int			prec_indic;
 }				t_print_params;
 
 /*
@@ -42,11 +42,11 @@ int				ft_printf(const char *format, ...);
 ** option_handlers.c
 */
 
-void			flags_handler(t_print_params *pr_par, va_list args);
+void			flags_handler(t_print_params *pr_par);
 void			width_handler(t_print_params *pr_par, va_list args);
 void			precision_handler(t_print_params *pr_par, va_list args);
-void			length_handler(t_print_params *pr_par, va_list args);
-void			type_handler(t_print_params *pr_par, va_list args);
+void			length_handler(t_print_params *pr_par);
+void			type_handler(t_print_params *pr_par);
 
 /*
 ** csp_handlers.c
@@ -61,8 +61,21 @@ void			p_handler(t_print_params *pr_par, va_list args);
 */
 
 void			buff_filler(t_print_params *pr_par, int sym);
-char			*ft_itoa_option(char *str, char option, int sign);
-char			*ft_itoa_base(long long n, int base, char option, char x);
+char			*ft_itoa_base(long long n, int base, t_print_params *pr_par);
+char			*ft_itoa_option(char *str, t_print_params *pr_par, int sign, long long n);
+
+//char			*ft_itoa_option(char *str, char option, int sign);
+//char			*ft_itoa_base(long long n, int base, char option, char x);
+
+/*
+** diouxX_handlers.c
+*/
+
+long long		length_changer(t_print_params *pr_par, va_list args);
+char			*num_getter(t_print_params *pr_par, va_list args);
+char			*extra_work(t_print_params *pr_par, char *str);
+void			di_handler(t_print_params *pr_par, va_list args);
+void			ouxX_handler(t_print_params *pr_par, va_list args);
 
 
 #endif
