@@ -6,21 +6,34 @@ void	buff_filler(t_print_params *pr_par, int sym)
 	pr_par->printf_buf[pr_par->buff_cntr] = sym;
 	pr_par->buff_cntr++;
 }
-
-
+/*
+char	*exceptions(char *str, long long n)
+{
+	//if (n == 4294967295)
+	//	return ("4294967295");
+	//if (n == 4294967296)
+	//	return ("0");
+	//else if (n == -9223372036854775808)
+	//	return ("-9223372036854775808");
+	//else
+		return (str);
+}*/
 char	*ft_itoa_option(char *str, t_print_params *pr_par, int sign, long long n)
 {
+	//str = exceptions(str, n);
+	//printf("\n\nitoa_option0: %s\n\n", str);
 	if (pr_par->prec_indic == 1 && pr_par->precision == 0 && n == 0)
 		str = "";
 	while ((int)ft_strlen(str) < pr_par->precision)
 		str = ft_strjoin("0", str);
-	//printf("\n\nitoa_option0: %s\n\n", str);
+	//printf("\n\nitoa_option2: %s\n\n", str);
 	if (pr_par->use_zeros == 1 && pr_par->align_to_left != 1)
 	{
-		while ((int)ft_strlen(str) < pr_par->padding_size - 1)
+		while ((int)ft_strlen(str) < pr_par->padding_size - 1
+		- 1 * ((pr_par->alt_format == 1 && n != 0)))
 			str = ft_strjoin("0", str);
 	}
-	//printf("\n\nitoa_option0: %s\n\n", str);
+	//printf("\n\nitoa_option3: %s\n\n", str);
 	if (pr_par->alt_format == 1 && n != 0)
 	{
 		if (pr_par->type == 'x')
@@ -35,9 +48,9 @@ char	*ft_itoa_option(char *str, t_print_params *pr_par, int sign, long long n)
 	if (sign < 0)
 		str = ft_strjoin("-", str);
 	else if (pr_par->space_option == 1  &&
-	pr_par->print_sign == 0 && sign > 0)
+	pr_par->print_sign == 0 && sign > 0 && pr_par->type != 'u')
 		str = ft_strjoin(" ", str);
-	else if (pr_par->print_sign == 1 && sign > 0)
+	else if (pr_par->print_sign == 1 && sign > 0 && pr_par->type != 'u')
 		str = ft_strjoin("+", str);
 	//printf("\n\nitoa_option: %s\n\n", str);
 	return (str);
@@ -50,6 +63,8 @@ char	*ft_itoa_base(long long n, int base, t_print_params *pr_par)
 	int			cnt;
 	int			sign;
 
+	if (n < 0 && base != 10)
+		n = n + pow(2, 32);
 	sign = (n < 0) ? -1 : 1;
 	cnt = 1;//(n < 0) ? 2 : 1;
 	ch = n;

@@ -13,9 +13,11 @@ long long		length_changer(t_print_params *pr_par, va_list args)
 		else if (pr_par->length == 'l')
 			num = va_arg(args, long);
 		else if (pr_par->length == 'L')
-			num = (long long)va_arg(args, long long);
+			num = (long long)va_arg(args, long long int);
 		else
 			num = (long long)va_arg(args, int);
+		//if (num == -9223372036854775808)
+		//	printf("wegergrh");
 	}
 	else
 	{
@@ -24,13 +26,18 @@ long long		length_changer(t_print_params *pr_par, va_list args)
 		else if (pr_par->length == 'h')
 			num = (unsigned short)va_arg(args, int);
 		else if (pr_par->length == 'l')
-			num = va_arg(args, unsigned long);
+			num = (long long)va_arg(args, unsigned long);
 		else if (pr_par->length == 'L')
-			num = va_arg(args, unsigned long long);
+			num = (long long)va_arg(args, unsigned long long);
 		else
-			num = (long long)va_arg(args, int);
+		{
+			if (pr_par->type == 'u')
+				num = (long long)va_arg(args, unsigned int);
+			else
+				num = (long long)va_arg(args, int);//long long);
+		}
 	}
-	//printf("\nnum_getter1111: %lld", num);
+	printf("\nnum_getter1111: %lld", (long long)0);
 	return (num);
 }
 
@@ -40,6 +47,10 @@ char	*num_getter(t_print_params *pr_par, va_list args)
 	long long	num;
 
 	num = length_changer(pr_par, args);
+
+	//if (num == -9223372036854775808)
+	//	return ("-9223372036854775808");
+
 	//printf("\nnum_getter: %lld", num);
 	if (pr_par->type == 'd' || pr_par->type == 'i' || pr_par->type == 'u') 
 		str = ft_itoa_base(num, 10, pr_par);
@@ -128,7 +139,7 @@ void	ouxX_handler(t_print_params *pr_par, va_list args)
 	str = num_getter(pr_par, args);
 	str = extra_work(pr_par, str);
 	len = ft_strlen(str);
-	//printf("\n\nouxX: %s\n\n", str);
+	//printf("\n\nlen: %d, padding: %d\nouxX: %s\n\n", len, pr_par->padding_size, str);
 	while (i < pr_par->padding_size)
 	{
 		if (pr_par->align_to_left == 1)
@@ -147,4 +158,7 @@ void	ouxX_handler(t_print_params *pr_par, va_list args)
 		}
 		i++;
 	}
+//	printf("\n???????");
+//	printf("\nbuf: %s\nbuff_cntr: %d", pr_par->printf_buf, pr_par->buff_cntr);
+//	printf("\n???????");
 }

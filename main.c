@@ -27,7 +27,7 @@ int		main()
 	ft_printf("\n%03.2d", 1);*/
 
 
-	ft_printf("\n%.2s is a string", "this");
+	/*ft_printf("\n%.2s is a string", "this");
 	ft_printf("\n%-5.2s is a string", "");
 	ft_printf("\n%s %s %s", "this", "is", "a");
 	ft_printf("\n%s %s %s %s string. gg!", "this", "is", "a", "multi", "string");
@@ -37,7 +37,39 @@ int		main()
 	ft_printf("\n@moulitest: %#.o %#.0o", 0, 0);
 	ft_printf("\n@moulitest: %c", 0);
 	ft_printf("\n%s", NULL);
+	*/
 
+/*
+	ft_printf("\n%5u", (long long)4294967295);
+	ft_printf("\n%x", 4294967296);
+	ft_printf("\n%+u", 4294967295);
+	ft_printf("\n% u", 4294967295);
+	ft_printf("\n%s %s%s%s%s", "this", "is", "a", "multi", "string");
+
+
+	ft_printf("\n%x", -42);
+
+
+	ft_printf("\n%o", -42123);
+	printf("\n%o", -42123);
+*/
+
+
+	//ft_printf("\n%#08x", 42);
+
+
+	ft_printf("\n%lld", -9223372036854775808);
+	//printf("\n%lld", -9223372036854775808);
+
+	//ft_printf("\n%lu", -42);
+	//printf("\n%lu", -42);
+	//printf("\n%d", ~(-42 ^ 0) + 1);
+	//printf("\n%4.15s", "I am 42");
+	//ft_printf("\n%4.15s", "I am 42");
+
+	//ft_printf("\n%lld", (long long)-9223372036854775808);
+	//printf("\n%lld", -9223372036854775808);
+	//ft_printf("\n%10d", 100);
 	return (0);
 }
 

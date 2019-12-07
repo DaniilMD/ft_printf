@@ -61,9 +61,10 @@ void	options_handler(t_print_params *pr_par, va_list args)
 	length_handler(pr_par);
 	type_handler(pr_par);
 	/*printf("\n|||||||||||||||||||||||||\n\ncurr_i: %d\nprint_sign: %d\nuse_zeros: %d\nalign_to_left: %d\nspace_option: %d\n\
-alt_format: %d\npadding_size: %d\nprecision: %d\nlength: %c\ntype: %c\n", pr_par->curr_i, pr_par->print_sign, pr_par->use_zeros, pr_par->align_to_left, pr_par->space_option, pr_par->alt_format, pr_par->padding_size, pr_par->precision, pr_par->length, pr_par->type);
-*/
-
+alt_format: %d\npadding_size: %d\nprecision: %d\nlength: %c\ntype: %c\n", pr_par->curr_i, pr_par->print_sign, pr_par->use_zeros, pr_par->align_to_left, pr_par->space_option, pr_par->alt_format, pr_par->padding_size, pr_par->precision, pr_par->length, pr_par->type);*/
+		
+	if (pr_par->str[pr_par->curr_i + 1] == '%' && pr_par->type == 0)
+			pr_par->type = '%';
 	if (pr_par->type == '%')
 		percent_handler(pr_par);
 		//buff_filler(pr_par, '%');
@@ -129,6 +130,7 @@ int		just_printer(char *printf_buf, const char *str, va_list args)
 		{
 			pr_par.curr_i++;
 			options_handler(&pr_par, args);
+			//pr_par.curr_i++;
 		}	
 	}
 	return (pr_par.buff_cntr);//ft_strlen(printf_buf));
@@ -148,7 +150,7 @@ int		ft_printf(const char *format, ...)
 	printed = just_printer(printf_buf, format, args);
 	va_end(args);
 
-	//printf("\nfinish: %s", printf_buf);
+	//printf("\nfinish: %saaa\nprinted: %d", printf_buf, printed);
 	//ft_putstr(printf_buf);
 	i = 0;
 	while (i < printed)

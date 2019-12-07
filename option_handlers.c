@@ -39,7 +39,6 @@ void	width_handler(t_print_params *pr_par, va_list args)
 			pr_par->padding_size = ft_atoi(&pr_par->str[pr_par->curr_i]);
 		}
 		pr_par->curr_i++;
-
 		//printf("%c ", pr_par->str[pr_par->curr_i - 1]);
 	} 
 }
@@ -80,14 +79,15 @@ void	length_handler(t_print_params *pr_par)
 
 void	type_handler(t_print_params *pr_par)
 {
+	if (pr_par->str[pr_par->curr_i] == '%')
+		pr_par->type = '%';
 	while ((pr_par->str[pr_par->curr_i] == 'c' || pr_par->str[pr_par->curr_i] == 's' || pr_par->str[pr_par->curr_i] == 'p'
 	|| pr_par->str[pr_par->curr_i] == 'd' || pr_par->str[pr_par->curr_i] == 'i' || pr_par->str[pr_par->curr_i] == 'o'
 	|| pr_par->str[pr_par->curr_i] == 'u' || pr_par->str[pr_par->curr_i] == 'x' || pr_par->str[pr_par->curr_i] == 'X'
-	|| pr_par->str[pr_par->curr_i] == 'f' || pr_par->str[pr_par->curr_i] == '%') && pr_par->str[pr_par->curr_i] != '\0')
+	|| pr_par->str[pr_par->curr_i] == 'f') && pr_par->str[pr_par->curr_i] != '\0')
 	{
 		pr_par->type = pr_par->str[pr_par->curr_i];
 		pr_par->curr_i++;
-
 		//printf("%c ", pr_par->str[pr_par->curr_i - 1]);
 	} 
 }
