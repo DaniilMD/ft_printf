@@ -1,4 +1,4 @@
 #!/bin/sh
 make
-gcc main.c libftprintf.a
-./a.out
+gcc main.c libftprintf.a -o ft_printf_test 
+./ft_printf_test

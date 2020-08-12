@@ -1,10 +1,10 @@
 
 NAME =  libftprintf.a
 
-SRC = ft_printf.c option_handlers.c csp_handlers.c support_functions.c diouxX_handlers.c
+SRC = ft_printf.c option_handlers.c csp_per_handlers.c \
+support_functions.c dioux_xx_handlers.c dioux_xx_helpers.c f_handler.c
 
 OBJ = $(SRC:.c=.o)
-##ft_printf.o option_handlers.o csp_handlers.o support_functions.o
 
 HEADER = ft_printf.h
 

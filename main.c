@@ -1,10 +1,12 @@
 #include "ft_printf.h"
+#include "stdio.h"
 
 int		main()
 {
-   //ft_printf("My printf: aa%%aaa123||||||||||||||%x||||||111111abc123", 42);
-	//printf("\nLibc ones: aa%%aaa123||||||||||||||%x||||||111111abc123\n\n", 42);
+   ft_printf("My printf: aa%%aaa123||||||||||||||%x||||||111111abc123", 42);
+	printf("\nLibc ones: aa%%aaa123||||||||||||||%x||||||111111abc123\n\n", 42);
 
+	ft_putchar('\n');
 	/*ft_printf("\n% +d", 42);
 	ft_printf("\n%+ d", 42);
 	ft_printf("\n%  +d", 42);
@@ -58,7 +60,7 @@ int		main()
 	//ft_printf("\n%#08x", 42);
 
 
-	ft_printf("\n%lld", -9223372036854775808);
+	//ft_printf("\n%lld", -9223372036854775808);
 	//printf("\n%lld", -9223372036854775808);
 
 	//ft_printf("\n%lu", -42);
